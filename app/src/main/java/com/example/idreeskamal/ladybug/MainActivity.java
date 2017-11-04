@@ -63,11 +63,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void launchImageManipulation(Bitmap imageBitmap) {
-        Intent intent = new Intent(this, ImageManipulation.class);
-        startActivity(intent);
-    }
-
     public void dispatchTakePictureIntent(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {

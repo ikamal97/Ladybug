@@ -34,4 +34,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/openGalleryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gallery"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="338dp" />
+
 </android.support.constraint.ConstraintLayout>
