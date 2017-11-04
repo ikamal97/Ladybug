@@ -1,19 +1,23 @@
 package com.example.idreeskamal.ladybug;
 
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.content.Intent;
 
 public class ImageManipulation extends AppCompatActivity {
 
+    private ImageView capturedImage;
     private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
@@ -37,9 +41,11 @@ public class ImageManipulation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_manipulation);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
+        capturedImage = (ImageView) findViewById(R.id.capturedImage);
+
+        Intent intent = getIntent();
+        Bitmap imageBitmap = intent.getParcelableExtra("bmp");
+        capturedImage.setImageBitmap(imageBitmap);
+}
 
 }

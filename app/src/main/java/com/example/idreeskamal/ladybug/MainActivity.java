@@ -26,14 +26,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -63,8 +55,17 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mImageView.setImageBitmap(imageBitmap);
+
+            // Transition to the image manipulation activity
+            Intent intent = new Intent(this, ImageManipulation.class);
+            intent.putExtra("bmp", imageBitmap);
+            startActivity(intent);
         }
+    }
+
+    private void launchImageManipulation(Bitmap imageBitmap) {
+        Intent intent = new Intent(this, ImageManipulation.class);
+        startActivity(intent);
     }
 
     public void dispatchTakePictureIntent(View view) {
@@ -73,14 +74,5 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-
-//    private void handleSmallCameraPhoto(Intent intent) {
-//        Bundle extras = intent.getExtras();
-//        mImageBitmap = (Bitmap) extras.get("data");
-//        mImageView.setImageBitmap(mImageBitmap);
-//        //mVideoUri = null;
-//        mImageView.setVisibility(View.VISIBLE);
-//        //mVideoView.setVisibility(View.INVISIBLE);
-//    }
 
 }
